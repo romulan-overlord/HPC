@@ -1,0 +1,33 @@
+1. Implement MPI_Bcast using MPI_Send from one rank to all others.
+2. Implement MPI_Bcast using MPI_Send from each rank to its right neighbour.
+3. Implement MPI_Bcast using MPI_Send and recursive doubling.
+(done)
+4. Each rank, EXCEPT RANK 0, is to compute a set of k numbers. This k is random for each process. To simulate the process of generating k numbers, each process can use rand() k times to generate it and store it in an array of k integers. Rank 0 has to compute the average of all these numbers. At the end of their computation, each rank sends all its numbers to rank 0. Rank 0 will output the average of all the numbers as well as the order in which the other ranks completed their task.
+(done)
+5. Write a simple MPI application to check if non-blocking MPI point-to-point calls are buffered or not.
+(done)
+6. Let each process generate a random integer (using rand()). Rank 0 should compute the sum of all these numbers using MPI_Reduce.
+(done)
+7. Let there be n processes. Let each process generate the ith row of a matrix (i = rank). Perform an MPI_Alltoall communication with these values. What does each process hold at the end of the communication?
+8. y=Ax - Matrix Vector multiplication. Let N be some fixed size. Let rank 0 generate a matrix A[N][N] and vector x[N], both integers (using rand()). Assume n processes such that n divides N without any remainder. Perform 1-D block partiotioning in terms of rows of A and compute y=Ax. At the end of the operation rank i should have its elements of the result vector y.
+
+(done)
+9. Implement One-to-all Broadcast in a Mesh (for p which is a perfect square).
+
+
+10. Implement All-to-all Broadcast in a ring (for p which is a power of 2).
+For 9 and 10, your function should have the signature as follows:
+void One-to-all-bcast(void *buf, int count, MPI_Datatype dp, int src, MPI_Comm comm)
+buf contains the data at the src. For the rest, buf should hold the data from src after this function is complete.
+
+11. Implement All-to-all Broadcast in a hypercube (for p which is a power of 2).
+12. Implement All-to-all Broadcast in a mesh (for p which is a perfect square).
+For 11 and 12, your function should have the signature as follows:
+void All-to-all-bcast(void *sendbuf, int count, MPI_Datatype dp, int *recvbuf, MPI_Comm comm)
+It is assumed that, size of recvbuf = size of sendbuf x no. of processes in comm.
+
+13. Implement All-to-one Reduce in a ring/hypercube (for p which is a power of 2).
+14. Implement All-to-one Reduce in a mesh (for p which is a perfect square).
+For 13 and 14, your function should have the signature as follows:
+void All-to-one-reduce(void *buf, int count, MPI_Datatype dp, int dst, MPI_Comm comm)
+buf contains the data at the all processes. At dst, buf should hold the sum of data from all others and itself, after this function is complete.
